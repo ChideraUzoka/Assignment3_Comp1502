@@ -1,0 +1,228 @@
+4058104820;Charmed;48.09;90;8;2005;98
+4079383569;Cheer Squad;90.01;61;8;2016;98
+4084960372;DreamWorks Shrek's Swamp Stories;264.27;56;8;2008;98
+4134304987;Friday Night Lights;59.3;81;8;2010;98
+4150799965;Glee;21.59;92;8;2015;94
+4205059343;H2O: Just Add Water;67.37;74;8;2009;95
+4319739200;Hart of Dixie;53.23;81;8;2014;97
+4353818087;Heartland;15.69;85;8;2015;91
+4355449938;How I Met Your Mother;224.72;94;8;2014;98
+4401933289;Last Man Standing;78.96;97;8;2015;96
+4459648851;Leverage;278.72;86;8;2012;98
+4463241698;Life Unexpected;93.29;55;8;2010;95
+4464788387;Marvel's Agents of S.H.I.E.L.D.;68.23;89;8;2016;77
+4576216782;Naruto;61.67;88;8;2008;88
+4585852723;Once Upon a Time;292.41;98;8;2016;88
+4599428616;Revenge;29.29;84;8;2015;88
+4627106401;Star Wars: The Clone Wars;21.19;93;8;2014;96
+4639887432;The Flash;62.35;98;8;2016;80
+4661866503;The Great British Baking Show;46.84;94;8;2016;74
+4662861666;White Collar;70.84;93;8;2014;97
+4731499724;Young Justice;93.08;71;8;2012;81
+4771103439;Alice Through the Looking Glass;64.81;96;10;2016;60
+4772797789;Annie;69.99;68;10;1982;60
+4774316121;Antz;184.21;80;10;1998;57
+4796227955;Atlantis: The Lost Empire;126.86;96;10;2001;95
+4831187177;Baby's Day Out;85.6;71;10;1994;98
+4844180696;Bee Movie;73.86;94;10;2007;94
+4863437054;Blank Check;265.62;93;10;1994;98
+4935699431;Cool Runnings;291.57;81;10;1993;70
+5009922251;Coraline;43.81;95;10;2009;70
+5012387837;Corpse Bride;12.14;91;10;2005;84
+5030016202;D2: The Mighty Ducks;89.11;70;10;1994;84
+5059382936;Finding Dory;240.06;98;10;2016;84
+5102451719;Flubber;33.79;83;10;1997;83
+5114057845;Goosebumps;100.14;90;10;2015;83
+5140173358;Grease;260.31;86;10;1978;83
+5220088189;Harry and the Hendersons;176.03;58;10;1987;82
+5236873244;Heavyweights;222.76;74;10;1995;82
+5239019250;Home;67.2;94;10;2015;82
+5240256540;"Honey: I Shrunk the Kids";28.02;80;10;1989;82
+5242279001;Hotel Transylvania 2;31.47;93;10;2015;82
+5247156109;Kubo and the Two Strings;8.29;96;10;2016;99
+5248837254;Kung Fu Panda;32.29;91;10;2008;89
+5279323659;Kung Fu Panda 3;182.61;92;10;2016;89
+5307695541;Lilo & Stitch;4.74;95;10;2002;92
+5334485537;Lilo & Stitch 2: Stitch Has A Glitch;96.33;85;10;2005;92
+5380257078;Minions;110.07;96;10;2015;92
+5411798199;Missione Hamburger;201.47;75;10;1997;92
+5419349327;Open Season: Scared Silly;227.21;72;10;2015;92
+5442572423;Paddington;237.77;70;10;2014;92
+5446463966;Pete's Dragon;15.71;93;10;2016;92
+5466369452;Ratchet and Clank;98.61;74;10;2016;97
+5494530303;Scooby-Doo;12.51;86;10;2002;98
+5637161167;Scooby-Doo 2: Monsters Unleashed;0.33;82;10;2004;98
+5645765685;Spy Kids 3: Game Over;206.65;64;10;2003;62
+5708657865;Star Wars: The Clone Wars;6.05;57;10;2008;96
+5726898779;The Angry Birds Movie;42.83;92;10;2016;94
+5880146101;The BFG;128.9;97;10;2016;95
+5882978986;The Great Gilly Hopkins;130.74;69;10;2016;97
+5905553294;The Iron Giant;17.55;83;10;1999;94
+5958291403;The Jungle Book;128.95;97;10;2016;92
+5964401598;The Little Prince;0.65;71;10;2015;91
+5970554935;The Little Rascals;107.75;86;10;1994;98
+5972333473;The Matchbreaker;106.99;79;10;2016;98
+5978960341;The Nightmare Before Christmas;15.3;84;10;1993;98
+6001104201;The Pacifier;114.71;91;10;2005;81
+6019930308;The Road to El Dorado;250.13;91;10;2000;90
+6045331143;Zootopia;98.77;97;10;2016;98
+6114587612;10 Things I Hate About You;47.89;68;13;1999;96
+6147356663;How to Lose a Guy in 10 Days;6.28;56;13;2003;97
+6245496583;Safe Haven;134.02;62;13;2013;91
+6270173616;Step Up;27.44;64;13;2006;90
+6333851004;The Benchwarmers;0.33;77;13;2006;98
+6375942616;The Waterboy;74.07;82;13;1998;98
+6388328760;Trouble with the Curve;64.51;63;13;2012;80
+6401250594;Twilight;213.09;89;13;2008;83
+6445676597;White Chicks;42.05;82;13;2004;97
+6487767393;30 Rock;67.28;66;14;2012;98
+6507258098;90210;77.3;62;14;2013;90
+6583467137;Absolutely Fabulous;287.38;59;14;2012;95
+6596226544;Army Wives;43.21;61;14;2013;80
+6602785768;Arrow;19.44;96;14;2015;80
+6678014194;Baby Daddy;295.52;80;14;2016;98
+6717226220;Bates Motel;98.84;83;14;2016;98
+6736127390;Being Human (U.S.);82.67;58;14;2014;90
+6853280706;Blue Bloods;77.68;95;14;2016;96
+6855604945;Bones;98.72;97;14;2016;97
+6886557808;Bordertown;66.1;86;14;2016;79
+6929408397;Breakout Kings;10.62;88;14;2012;98
+6957748827;Burn Notice;73.88;85;14;2013;82
+7001540358;Ghettopoly;Gamen;7.35;10;5;2-5
+7088724445;Clue Jr.: Case of the Missing Pet;Game Reboot;97.22;6;7;1-8
+7089315414;Tsuro;Gamen;176.91;1;5;1-5
+7187309492;Risk;Game Sky;70.42;10;8;1-6
+7211390797;Poleconomy;Game Throne;211.94;5;10;1-3
+7235647474;13 Dead End Drive;Game Assassin;55.18;10;9;1-8
+7344775739;Coppit;Game Buff;250.19;9;2;2-8
+7393662390;Star Wars Tactics;Game Loop;3.44;3;2;1-5
+7397838299;Axis & Allies;Game Mach;6.98;7;6;1-8
+7586140827;Battle Sheep;Game Sensor;266.57;14;9;2-5
+7596463022;Strange Synergy;Gamefluent;80.41;6;7;1-7
+7643992605;Shengguan Tu;Game Buff;67.78;3;7;1-8
+7666840048;Anti-Monopoly;Game Reboot;231.32;8;8;2-3
+7703281617;Shogun/Samurai Swords;Game Demon;90.75;12;8;1-3
+7734720369;Doom: The Boardgame;Gamefluent;174.24;10;7;1-3
+7785377855;Bang!;Game Pixel;89.51;9;7;2-5
+7824482027;The Farming Game;Game Throne;174.14;13;4;1-5
+7837317368;TEG;Game Reboot;76.34;1;8;1-7
+7854452599;Hotel;Game Sensor;82.8;10;8;1-3
+7935086963;StarCraft: The Board Game;Gameado;50.81;5;7;1-6
+8076566788;Star Wars Epic Duels;Game Reboot;285.25;14;9;1-8
+8085889603;1313 Dead End Drive;Game Zombie;43.54;10;10;2-3
+8362861720;Heroscape;Game Pixel;132.21;7;8;1-5
+8441793657;Solarquest;Game Orc;112.0;6;7;2-3
+8497620960;Diplomacy;Game Sensor;58.25;7;10;2-8
+8573975959;War on Terror;Game Survival;104.63;7;9;1-3
+8584372936;American Megafauna;Game Loop;38.49;7;2;2-7
+8616804705;Mikado;Game Pixel;9.32;9;9;1-3
+8685655988;Betrayal at House on the Hill;Gamegenix;131.52;9;6;1-4
+8793598849;Eclipse;Game Sky;50.61;6;7;2-6
+8840576104;Tsuro of the Seas;Game Sensor;175.98;6;2;1-5
+8934865506;Djambi;Game Shadow;78.76;3;6;1-4
+8947640910;Exploding Kittens;Game Pixel;73.07;9;3;2-6
+8987410474;Bookchase;Game Mach;97.72;9;9;2-4
+8999104279;Blokus;Gamearo;76.78;11;10;2-3
+9056736113;Khet;Game Sky;62.11;5;2;2-6
+9074383778;Blue Max;Gamearo;199.37;11;2;1-8
+9108635194;Spy Alley;Game Orc;29.47;1;4;1-3
+9138814396;Titan;Game Reboot;65.95;13;4;2-4
+9150054745;King of Tokyo;Gamegenix;223.23;5;8;2-3
+9163940865;Blood Feud in New York;Game Mafia;25.48;12;5;1-7
+9218558662;The Great Train Robbery;Game Zombie;6.92;2;2;2-4
+9258568559;Jenga;Game Reboot;49.34;10;7;1-5
+9336740135;ckshaus;Game Orc;61.77;12;6;2-7
+9399563748;Monopoly;Game Survival;47.52;4;3;1-4
+9493833470;Ludo;Game Mafia;145.95;14;6;2-5
+2029859334;Selected Short Stories;Archer, Jeffery;14.06;2;7;F;Jaico
+2113996461;World's Greatest Short Stories;Archer, Jeffery;66.06;4;10;F;Jaico
+2175242587;False Impressions;Archer, Jeffery;48.44;14;10;F;Pan
+2226330136;Prisoner of Birth;Archer, Jeffery;206.13;1;2;F;Pan
+2296386544;To Sir With Love;Braithwaite;238.78;8;2;F;Penguin
+2342281667;Angels & Demons;Brown, Dan;90.67;3;9;F;Random House
+2399837756;Outsider;Camus, Albert;171.46;13;4;F;Penguin
+2432451871;Jurassic Park;Crichton, Michael;40.34;12;7;F;Random House
+2454855569;Asami Asami;Deshpande, P L;110.79;5;4;F;Mauj
+2586025992;Crime and Punishment;Dostoevsky, Fyodor;14.16;10;8;F;Penguin
+2627898001;Complete Sherlock Holmes;Doyle, Arthur Conan;42.18;12;9;F;Random House
+2629048960;Pillars of the Earth;Follett, Ken;60.1;13;5;F;Random House
+2656739862;Veteran;Forsyth, Frederick;28.06;2;2;F;Transworld
+2657125753;Maqta-e-Ghalib;Garg, Sanjay;139.99;12;5;F;Mauj
+2708237084;Sea of Poppies;Ghosh, Amitav;70.86;14;10;F;Penguin
+2753759364;Doctor in the Nude;Gordon, Richard;14.22;5;12;F;Penguin
+2770204747;Brethren;Grisham, John;46.15;10;13;F;Random House
+2797548530;Raisin in the Sun;Hansberry, Lorraine;9.41;10;2;F;Penguin
+2804598463;Catch 22;Heller, Joseph;0.33;11;12;F;Random House
+2835360879;Farewell to Arms;Hemingway, Ernest;227.67;9;14;F;Rupa
+2840084672;Hunchback of Notre Dame;Hugo, Victor;14.49;10;5;F;Random House
+2857921221;Trial;Kafka, Frank;287.91;8;10;F;Random House
+2873391970;City of Joy;Lapierre, Dominique;277.4;12;10;F;vikas
+3015093594;Ashenden of The British Agent;Maugham, William S;32.99;6;11;F;Vintage
+3015547049;Maugham's Collected Short Stories;Maugham, William S;97.22;3;9;F;Vintage
+3045978973;In a Free State;Naipaul, V. S.;15.36;12;10;F;Rupa
+3066990646;Tales of Mystery and Imagination;Poe, Edgar Allen;198.63;3;8;F;HarperCollins
+3110807827;We the Living;Rand, Ayn;18.29;2;12;F;Penguin
+3131436838;Burning Bright;Steinbeck, John;148.55;6;6;F;Penguin
+3192989816;Journal of a Novel;Steinbeck, John;80.66;3;3;F;Penguin
+3226057634;Moon is Down;Steinbeck, John;221.46;8;3;F;Penguin
+3255102735;Winter of Our Discontent;Steinbeck, John;192.31;12;8;F;Penguin
+3315715666;Amulet of Samarkand;Stroud, Jonathan;22.47;7;3;F;Random House
+3337731148;Great Indian Novel;Tharoor, Shashi;76.3;10;6;F;Penguin
+3342647215;Slaughterhouse Five;Vonnegut, Kurt;120.37;5;8;F;Random House
+3412976858;New Machiavelli;Wells, H. G.;60.1;5;7;F;Penguin
+3424511521;One;Bach, Richard;121.91;11;5;N;Dell
+3679935385;Complete Mastermind;BBC;254.38;4;6;N;BBC
+3687310778;Uncommon Wisdom;Capra, Fritjof;210.95;13;10;N;Fontana
+3690664040;Beautiful and the Damned;Deb, Siddhartha;32.26;14;10;N;Penguin
+3737738613;Aghal Paghal;Deshpande, P L;12.89;12;10;N;Mauj
+3899783893;Gun Gayin Awadi;Deshpande, P L;14.07;14;10;N;Mauj
+3058104820;Radiowaril Bhashane & Shrutika;Deshpande, P L;99.83;2;5;N;Mauj
+2079383569;Ahe Manohar Tari;Deshpande, Sunita;106.32;12;3;N;Mauj
+3084960372;Dylan on Dylan;Dylan, Bob;65.02;7;3;N;Random House
+2134304987;Mein Kampf;Hitler, Adolf;270.32;9;10;N;Rupa
+3150799965;Manasa;Kale, V P;30.03;11;9;N;Mauj
+2205059343;Down and Out in Paris & London;Orwell, George;47.43;1;6;N;Penguin
+3319739200;Last Lecture;Pausch, Randy;94.3;9;5;N;Hyperion
+2353818087;Argumentative Indian;Sen, Amartya;192.93;3;8;N;Picador
+3355449938;Idea of Justice;Sen, Amartya;48.58;9;2;N;Penguin
+2401933289;Once There Was a War;Steinbeck, John;140.93;13;9;N;Penguin
+2459648851;Russian Journal;Steinbeck, John;22.89;4;9;N;Penguin
+3463241698;Bookless in Baghdad;Tharoor, Shashi;14.53;14;5;N;Penguin
+0113513686;Toy soldier;Gamen;14.06;2;5;A
+0131612280;Peg wooden doll;Game Loop;66.06;4;3;H
+0219383891;Leonardo da Vinci;Game Zombie;48.44;14;6;H
+0298753495;Parian doll;Game Buff;206.13;1;9;A
+0346965428;Army men;Gamezoid;238.78;8;4;D
+0412938521;Troll doll;Game Sky;90.67;3;3;D
+0496522522;Anatomically correct doll;Game Rush;171.46;13;8;H
+0554378222;Elizabeth I;Game Mafia;40.34;12;3;H
+0642429383;Julius Caesar;Game Demon;110.79;5;4;D
+0693095326;Napoleon;Gamescape;14.16;10;3;H
+0766777773;Fashion doll;Game Sky;42.18;12;3;D
+0845728850;Barbie;Game Buff;60.1;13;8;D
+0902986179;Celebrity doll;Game Orc;28.06;2;10;H
+1024162826;Japanese traditional dolls;Game Demon;139.99;12;7;H
+1091374555;William Shakespeare;Game Sky;70.86;14;2;H
+1128983567;American Girl;Game Shadow;14.22;5;8;A
+1147205649;Ninja Turtles;Gamezoid;46.15;10;6;A
+1167480102;Transformers;Game Zombie;9.41;10;9;H
+1200457201;Isaac Newton;Gamen;0.33;11;3;H
+1295451746;Christopher Columbus;Gamearo;227.67;9;4;H
+1333295538;Ball-jointed doll;Gameara;14.49;10;3;A
+1361154872;Topsy-Turvy doll;Game Survival;287.91;8;3;H
+1396272830;Power Rangers;Game Mach;277.4;12;5;A
+1411602724;Frozen Charlotte;Game Sky;32.99;6;8;A
+1559749393;Star Wars;Game Demon;97.22;3;8;H
+1579214984;Beethoven;Game Loop;15.36;12;6;A
+1661435290;Voodoo doll;Game Loop;198.63;3;4;A
+1672553954;Queen Victoria;Game Mafia;18.29;2;6;A
+1698543210;Cabbage Patch Kids;Game Loop;148.55;6;10;D
+1731377211;Groovy Girls;Game Loop;80.66;3;5;H
+1772751359;Teddy bear;Game Reboot;221.46;8;3;H
+1778180329;George Washington;Gamegenix;192.31;12;8;H
+1829395687;Albert Einstein;Game Pixel;22.47;7;3;H
+1918096709;Karl Marx;Gameara;76.3;10;6;A
+1963069543;Chatty Cathy;Game Survival;120.37;5;8;A
+1989637627;Abraham Lincoln;Game Throne;60.1;5;7;H
+7213456789;jgh;ghknj;234.0;43;5;23-5
+234567890;FERFGMHJ,.\;FDGHNF;5467.0;123;6;JHGFD;765
