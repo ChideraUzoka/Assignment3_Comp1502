@@ -576,7 +576,7 @@ public class storeGuiController implements Initializable {
 		figureTypeComboBox.setValue(" ");
 		figureTypeComboBox.setItems(figureTypeDropDownItems);
 
-		// to set the type box
+		// to set the category type box
 
 		itemCategoryComboBox.setValue("");
 		itemCategoryComboBox.setItems(categoryDropDown);
