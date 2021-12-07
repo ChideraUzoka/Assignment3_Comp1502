@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -28,9 +29,12 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <RadioButton fx:id="selectedSN" layoutX="28.0" layoutY="96.0" mnemonicParsing="false" onAction="#clickSelect" text="Serial Number" />
-                  <RadioButton fx:id="selectedName" layoutX="153.0" layoutY="96.0" mnemonicParsing="false" text="Name" />
-                  <RadioButton fx:id="selectedType" layoutX="237.0" layoutY="96.0" mnemonicParsing="false" text="Type" />
+                  <RadioButton fx:id="selectedSN" layoutX="28.0" layoutY="96.0" mnemonicParsing="false" onAction="#clickSelect" text="Serial Number">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="typeGroup" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="selectedName" layoutX="153.0" layoutY="96.0" mnemonicParsing="false" text="Name" toggleGroup="$typeGroup" />
+                  <RadioButton fx:id="selectedType" layoutX="237.0" layoutY="96.0" mnemonicParsing="false" text="Type" toggleGroup="$typeGroup" />
                   <Label layoutX="26.0" layoutY="150.0" text="Serial Number (SN)" textFill="#e92121" />
                   <Label layoutX="26.0" layoutY="186.0" text="Name" />
                   <Label layoutX="28.0" layoutY="228.0" text="Type" />
