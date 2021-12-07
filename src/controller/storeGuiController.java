@@ -14,7 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -34,7 +34,7 @@ public class storeGuiController implements Initializable {
 	@FXML
 	private TextField targetName;
 	@FXML
-	private ChoiceBox<?> targetType;
+	private ComboBox<String> targetType;
 	@FXML
 	private Button btnSearch;
 	@FXML
@@ -48,11 +48,20 @@ public class storeGuiController implements Initializable {
 	ArrayList<Item> itemsList;
 	final ObservableList<String> resultsList = FXCollections.observableArrayList();
 
+	// to make alist of selectable type search items
+	final ObservableList<String> typeSearchList = FXCollections.observableArrayList("Movie", "Book", "Figure",
+			"BoardGame");
+
 	// to load up the items file
 	public storeGuiController() throws SecurityException, IOException {
 
 		fileHandler = new FileHandler();
 		itemsList = fileHandler.masterItemList();
+	}
+
+	public void clickSelect(ActionEvent event) {
+		selectedName.setDisable(true);
+		selectedType.setDisable(true);
 	}
 
 	// Event Listener on Button[#btnSearch].onAction
@@ -64,6 +73,8 @@ public class storeGuiController implements Initializable {
 		boolean typeIsSelected = selectedType.isSelected();
 
 		if (SNisSelected) {
+			resultsList.clear();
+
 			ArrayList<Item> result = serialNumberSearch(targetSN.getText());
 			resultsList.clear();
 
@@ -71,11 +82,36 @@ public class storeGuiController implements Initializable {
 				resultsList.add(it.toString());
 			}
 		} else if (nameIsSelected) {
-			System.out.println("name");
+			resultsList.clear();
+			ArrayList<Item> result = itemNameSearch(targetName.getText());
+			resultsList.clear();
+
+			for (Item it : result) {
+				resultsList.add(it.toString());
+			}
+
 		} else if (typeIsSelected) {
-			System.out.println("type");
+			resultsList.clear();
+			ArrayList<Item> result = typeSearch(targetType.getValue());
+			resultsList.clear();
+
+			for (Item it : result) {
+				resultsList.add(it.toString());
+			}
+
+		} else {
+			JOptionPane.showMessageDialog(null, "Please select a search method");
+
 		}
 	}
+
+	/**
+	 * method to search the inventory based on the item SN
+	 * 
+	 * @param none
+	 * @return none
+	 *
+	 */
 
 	private ArrayList<Item> serialNumberSearch(String targetSN) {
 
@@ -88,12 +124,74 @@ public class storeGuiController implements Initializable {
 				}
 
 			}
+			// if item isnt found
+			if (resultList.isEmpty()) {
+
+				JOptionPane.showMessageDialog(null, "Item not found");
+
+			}
 
 		} catch (NumberFormatException e) {
 			System.out.println("Wrong Serial Number ");
 		}
 		return resultList;
 
+	}
+
+	/**
+	 * method to search the inventory based on the item name
+	 * 
+	 * @param none
+	 * @return none
+	 *
+	 */
+	public ArrayList<Item> itemNameSearch(String targetName) {
+
+		ArrayList<Item> resultList = new ArrayList<>();
+
+		try {
+			for (Item currentItem : itemsList) {
+				if (currentItem.getName().toLowerCase().contains(targetName.toLowerCase())) {
+					resultList.add(currentItem);
+
+				}
+
+			}
+
+			// if item isnt found
+			if (resultList.isEmpty()) {
+
+				JOptionPane.showMessageDialog(null, "Item not found");
+
+			}
+		} catch (Exception e) {
+			System.out.println("Item not found");
+		}
+		return resultList;
+
+	}
+
+	/**
+	 * method to search the inventory based on the item type
+	 * 
+	 * @param none
+	 * @return none
+	 *
+	 */
+	public ArrayList<Item> typeSearch(String targetType) {
+		ArrayList<Item> resultList = new ArrayList<Item>();
+
+		try {
+			for (Item currentItem : itemsList) {
+
+				if (currentItem.getClass().getSimpleName().equalsIgnoreCase(targetType)) {
+					resultList.add(currentItem);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Wrong type, try a different type");
+		}
+		return resultList;
 	}
 
 	// Event Listener on Button[#btnReset].onAction
@@ -138,5 +236,10 @@ public class storeGuiController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		lvResults.setItems(resultsList);
+
+		// to set the type box
+
+		targetType.setValue("Type");
+		targetType.setItems(typeSearchList);
 	}
 }
