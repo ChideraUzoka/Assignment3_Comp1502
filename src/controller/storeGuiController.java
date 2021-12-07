@@ -109,7 +109,7 @@ public class storeGuiController implements Initializable {
 	// to make a list of selectable figure type items
 	final ObservableList<String> figureTypeDropDownItems = FXCollections.observableArrayList("A", "D", "H");
 
-	// to make a list of selectable figure type items
+	// to make a list of selectable category items
 	final ObservableList<String> categoryDropDown = FXCollections.observableArrayList("Movie", "Book", "Figure",
 			"BoardGame");
 
