@@ -130,7 +130,6 @@ public class storeGuiController implements Initializable {
 
 		if (SNisSelected) {
 			resultsList.clear();
-
 			ArrayList<Item> result = serialNumberSearch(targetSN.getText());
 			resultsList.clear();
 
@@ -292,11 +291,15 @@ public class storeGuiController implements Initializable {
 
 	}
 
-	/** add Items code */
+	/**
+	 * add Items code
+	 * 
+	 * @throws FileNotFoundException
+	 */
 
 	// Event Listener on Button[#saveBtn].onAction
 	@FXML
-	public void addItem(ActionEvent event) {
+	public void addItem(ActionEvent event) throws FileNotFoundException {
 		addNewItem();
 	}
 
@@ -305,142 +308,255 @@ public class storeGuiController implements Initializable {
 	 * 
 	 * @param none
 	 * @return none
+	 * @throws FileNotFoundException
 	 *
 	 */
-	public void addNewItem() {
+	public void addNewItem() throws FileNotFoundException {
+		boolean valid = true;
 
-		String SN = addSN.getText();
-		char firstSnNumber = SN.charAt(0);
+		if (itemCategoryComboBox.getValue().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Please select a category");
+			valid = false;
+		} else {
+			// initialize variables
+			String SN = null;
+			String name = null;
+			double price = 0;
+			int availableCount = 0;
+			int age = 0;
+			char firstSnNumber = 0;
 
-		// we have to validate the SN
-//		if (addName.getText().isEmpty()) {
-//			JOptionPane.showMessageDialog(null, "Please enter a name");
-//
-//		} else {
-		String name = addName.getText();
-		// }
+			if (addSN.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Please enter a Serial Numeber");
+				valid = false;
 
-//		if (addPrice.getText().isEmpty()) {
-//			JOptionPane.showMessageDialog(null, "Please enter a Price");
-//
-//		} else {
-		double price = Double.parseDouble(addPrice.getText());
-		// }
+			} else {
+				SN = addSN.getText();
+				firstSnNumber = SN.charAt(0);
+			}
+			// we have to validate the SN
+			if (addName.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Please enter a name");
+				valid = false;
 
-//		if (addAvailableCount.getText().isEmpty()) {
-//			JOptionPane.showMessageDialog(null, "Please enter the available count");
-
-		// } else {
-		int availableCount = Integer.parseInt(addAvailableCount.getText());
-		// }
-
-//		if (addAgeAppropriate.getText().isEmpty()) {
-//			JOptionPane.showMessageDialog(null, "Please enter the approriate age");
-
-		// } else {
-		int age = Integer.parseInt(addAgeAppropriate.getText());
-		// }
-
-		// check for movies
-		if (itemCategoryComboBox.getValue().equalsIgnoreCase("movie")) {
-			System.out.println(firstSnNumber);
-			try {
-				if (firstSnNumber != '4' || firstSnNumber != '5' || firstSnNumber != '6') {
-					JOptionPane.showMessageDialog(null, "Serial Number must begin with 4, 5 or 6");
-				}
-
-				else {
-//					if (addReleaseYear.getText().isEmpty()) {
-//						JOptionPane.showMessageDialog(null, "Please enter a the release year");
-//
-//					} else {
-					String releaseYear = addReleaseYear.getText();
-					// }
-
-					int rating = Integer.parseInt(addRating.getText());
-
-					// create movie objetc and add to list
-					Movie movie = new Movie(SN, name, price, availableCount, age, releaseYear, rating);
-					itemsList.add(movie);
-				}
-			} catch (Exception e) {
-				e.getMessage();
-				System.out.println("Invalid Input. Please Enter a valid number");
+			} else {
+				name = addName.getText();
 			}
 
-		}
-
-		// check for books
-		else if (itemCategoryComboBox.getValue().equalsIgnoreCase("book")) {
-			boolean fictionIsSelected = rbFiction.isSelected();
-			boolean nonFicIsSelected = rbNonFiction.isSelected();
-
-			if (firstSnNumber != '2' || firstSnNumber != '3') {
-				JOptionPane.showMessageDialog(null, "Serial Number must begin with 2 or 3");
+			if (addPrice.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Please enter a Price");
+				valid = false;
 			} else {
+				price = Double.parseDouble(addPrice.getText());
+			}
 
-				String authors = addAuthours.getText();
-				// to set genre
+			if (addAvailableCount.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Please enter the available count");
+				valid = false;
+			} else {
+				availableCount = Integer.parseInt(addAvailableCount.getText());
+			}
+
+			if (addAgeAppropriate.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Please enter the approriate age");
+				valid = false;
+			} else {
+				age = Integer.parseInt(addAgeAppropriate.getText());
+			}
+			if (!valid) {
+				return;
+			}
+			// check for movies
+			if (itemCategoryComboBox.getValue().equalsIgnoreCase("movie")) {
+
+				// initialize variables
+				String releaseYear = null;
+				int rating = 0;
+				try {
+					// check if serial number is correct
+					if (firstSnNumber != '4' && firstSnNumber != '5' && firstSnNumber != '6') {
+						JOptionPane.showMessageDialog(null, "Serial Number must begin with 4, 5 or 6");
+
+					}
+
+					else {
+						// check and avlidate each variable for movies
+						if (addReleaseYear.getText().isEmpty()) {
+							JOptionPane.showMessageDialog(null, "Please enter the release year");
+							valid = false;
+
+						} else {
+							releaseYear = addReleaseYear.getText();
+						}
+
+						if (addRating.getText().isEmpty()) {
+							JOptionPane.showMessageDialog(null, "Please enter a Rating");
+							valid = false;
+
+						} else {
+							rating = Integer.parseInt(addRating.getText());
+						}
+						if (!valid) {
+							return;
+						}
+						// create movie objetc and add to list
+						Movie movie = new Movie(SN, name, price, availableCount, age, releaseYear, rating);
+						itemsList.add(movie);
+						fileHandler.save(itemsList);
+						JOptionPane.showMessageDialog(null, "Movie Added!");
+					}
+				} catch (Exception e) {
+					e.getMessage();
+					System.out.println("Invalid Input. Please Enter a valid number");
+				}
+
+			}
+
+			// check for books
+			else if (itemCategoryComboBox.getValue().equalsIgnoreCase("book")) {
+				// set the boolean for the radio button
+				boolean fictionIsSelected = rbFiction.isSelected();
+				boolean nonFicIsSelected = rbNonFiction.isSelected();
+
+				// intitalize variabls
+				String authors = null;
 				String genre = null;
+				String publication = null;
 
-				if (fictionIsSelected) {
-					genre = "F";
-				} else if (nonFicIsSelected) {
-					genre = "N";
+				if (firstSnNumber != '2' && firstSnNumber != '3') {
+					JOptionPane.showMessageDialog(null, "Serial Number must begin with 2 or 3");
 				} else {
-					JOptionPane.showMessageDialog(null, "Please select a genre");
+					if (addAuthours.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Please enter the Authors");
+						valid = false;
+
+					} else {
+						authors = addAuthours.getText();
+					}
+
+					// to set genre
+
+					if (fictionIsSelected) {
+						genre = "F";
+					} else if (nonFicIsSelected) {
+						genre = "N";
+					} else {
+						JOptionPane.showMessageDialog(null, "Please select a genre");
+						valid = false;
+					}
+
+					if (addPublication.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Please enter the publication");
+						valid = false;
+
+					} else {
+						publication = addPublication.getText();
+					}
+					if (!valid) {
+						return;
+					}
+
+					// cretae new book object and add to list
+					Book book = new Book(SN, name, authors, price, availableCount, age, genre, publication);
+					itemsList.add(book);
+					fileHandler.save(itemsList);
+					JOptionPane.showMessageDialog(null, "Book Added!");
 				}
-
-				String publication = addPublication.getText();
-
-				// cretae new book object and add to list
-				Book book = new Book(SN, name, authors, price, availableCount, age, genre, publication);
-				itemsList.add(book);
-
-				JOptionPane.showMessageDialog(null, "Book Added!");
 			}
-		}
 
-		// check for figure
-		else if (itemCategoryComboBox.getValue().equalsIgnoreCase("figure")) {
+			// check for figure
+			else if (itemCategoryComboBox.getValue().equalsIgnoreCase("figure")) {
 
-			if (firstSnNumber != '0' || firstSnNumber != '1') {
-				JOptionPane.showMessageDialog(null, "Serial Number must begin with 0 or 1");
-			} else {
-				String figType = figureTypeComboBox.getValue().toString();
+				// initialize variables
+				String figType = null;
+				String brand = null;
 
-				String brand = addBrand.getText();
+				if (firstSnNumber != '0' && firstSnNumber != '1') {
+					JOptionPane.showMessageDialog(null, "Serial Number must begin with 0 or 1");
+				} else {
 
-				// create figure object
-				Figure figure = new Figure(SN, name, brand, price, availableCount, age, figType);
+					if (figureTypeComboBox.getValue().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Please Select a figure type");
+						valid = false;
 
-				itemsList.add(figure);
-				JOptionPane.showMessageDialog(null, "Figure Added!");
+					} else {
+						figType = figureTypeComboBox.getValue().toString();
+					}
+
+					if (addBrand.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Please enter the brand");
+						valid = false;
+
+					} else {
+						brand = addBrand.getText();
+					}
+					if (!valid) {
+						return;
+					}
+					// create figure object
+					Figure figure = new Figure(SN, name, brand, price, availableCount, age, figType);
+
+					itemsList.add(figure);
+					fileHandler.save(itemsList);
+					JOptionPane.showMessageDialog(null, "Figure Added!");
+				}
 			}
-		}
 
-		// check for board game
-		else if (itemCategoryComboBox.getValue().equalsIgnoreCase("board game")) {
+			// check for board game
+			else if (itemCategoryComboBox.getValue().equalsIgnoreCase("board game")) {
 
-			if (firstSnNumber != '7' || firstSnNumber != '8') {
-				JOptionPane.showMessageDialog(null, "Serial Number must begin with 7 or 8");
-			} else {
-				String brand = addBrand.getText();
+				// initialize variables
+				String brand = null;
+				int minPlayers = 0;
+				int maxPlayers = 0;
 
-				int minPlayers = Integer.parseInt(addMinPlayers.getText());
+				if (firstSnNumber != '7' && firstSnNumber != '8') {
+					JOptionPane.showMessageDialog(null, "Serial Number must begin with 7 or 8");
+				} else {
 
-				int maxPlayers = Integer.parseInt(addMaxPlayers.getText());
+					if (addBrand.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Please enter the brand");
+						valid = false;
 
-				int totalP = maxPlayers - minPlayers;
+					} else {
+						brand = addBrand.getText();
+					}
 
-				String numPlayers = String.valueOf(totalP);
+					if (addMinPlayers.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Please enter the Minimum Number of players");
+						valid = false;
 
-				// create board game objetc and add to list
-				BoardGame game = new BoardGame(SN, name, brand, price, availableCount, age, numPlayers, minPlayers,
-						maxPlayers);
+					} else {
+						minPlayers = Integer.parseInt(addMinPlayers.getText());
+					}
 
-				itemsList.add(game);
-				JOptionPane.showMessageDialog(null, "Board Game Added!");
+					if (addMaxPlayers.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Please enter the Maximum Number of players");
+						valid = false;
+
+					} else {
+						maxPlayers = Integer.parseInt(addMaxPlayers.getText());
+					}
+
+					if (!valid) {
+						return;
+					}
+
+					int totalP = maxPlayers - minPlayers;
+
+					String numPlayers = String.valueOf(totalP);
+
+					// create board game objetc and add to list
+					BoardGame game = new BoardGame(SN, name, brand, price, availableCount, age, numPlayers, minPlayers,
+							maxPlayers);
+
+					itemsList.add(game);
+					fileHandler.save(itemsList);
+					JOptionPane.showMessageDialog(null, "Board Game Added!");
+				}
+			}
+			if (!valid) {
+				return;
 			}
 		}
 
@@ -462,7 +578,7 @@ public class storeGuiController implements Initializable {
 
 		// to set the type box
 
-		itemCategoryComboBox.setValue("Type");
+		itemCategoryComboBox.setValue("");
 		itemCategoryComboBox.setItems(categoryDropDown);
 	}
 }
