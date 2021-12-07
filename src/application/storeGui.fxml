@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="699.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.storeGuiController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="740.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.storeGuiController">
   <tabs>
     <Tab text="Home">
       <content>
@@ -54,7 +55,68 @@
     </Tab>
     <Tab text="Add Items">
          <content>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="25.0" layoutY="84.0" text="Enter New Item Information">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="25.0" layoutY="115.0" prefWidth="200.0" />
+                  <Separator layoutX="309.0" layoutY="118.0" orientation="VERTICAL" prefHeight="344.0" prefWidth="5.0" />
+                  <Label layoutX="26.0" layoutY="138.0" text="Category" />
+                  <Label layoutX="26.0" layoutY="177.0" text="Serial Number (SN)" />
+                  <Label layoutX="24.0" layoutY="216.0" text="Name" />
+                  <Label layoutX="26.0" layoutY="250.0" text="Price" />
+                  <Label layoutX="22.0" layoutY="281.0" text="Available Count" />
+                  <Label layoutX="15.0" layoutY="316.0" text="Age Appropriate" />
+                  <TextField fx:id="addSN" layoutX="155.0" layoutY="173.0" />
+                  <TextField fx:id="addName" layoutX="155.0" layoutY="212.0" />
+                  <TextField fx:id="addPrice" layoutX="155.0" layoutY="246.0" />
+                  <TextField fx:id="addAvailableCount" layoutX="155.0" layoutY="277.0" />
+                  <TextField fx:id="addAgeAppropriate" layoutX="155.0" layoutY="312.0" />
+                  <ChoiceBox fx:id="itemCategoryComboBox" layoutX="155.0" layoutY="134.0" prefWidth="150.0" />
+                  <Label layoutX="398.0" layoutY="62.0" text="Toy" />
+                  <Separator layoutX="367.0" layoutY="96.0" prefHeight="1.0" prefWidth="80.0" />
+                  <Label layoutX="322.0" layoutY="139.0" text="Brand" />
+                  <Label layoutX="319.0" layoutY="177.0" text="Classification" />
+                  <Separator layoutX="317.0" layoutY="223.0" prefWidth="200.0" />
+                  <Label layoutX="388.0" layoutY="242.0" text="Figure" />
+                  <Separator layoutX="357.0" layoutY="265.0" prefHeight="3.0" prefWidth="94.0" />
+                  <Label layoutX="331.0" layoutY="290.0" text="Type" />
+                  <Label layoutX="375.0" layoutY="352.0" text="Board Game" />
+                  <Label layoutX="317.0" layoutY="385.0" text="Min. Number of Players" />
+                  <Label layoutX="314.0" layoutY="416.0" text="Max. Number of Players" />
+                  <Separator layoutX="357.0" layoutY="376.0" prefHeight="3.0" prefWidth="94.0" />
+                  <Separator layoutX="524.0" layoutY="20.0" orientation="VERTICAL" prefHeight="200.0" />
+                  <Separator layoutX="525.0" layoutY="237.0" orientation="VERTICAL" prefHeight="219.0" prefWidth="2.0" />
+                  <TextField fx:id="addBrand" layoutX="367.0" layoutY="134.0" />
+                  <ComboBox fx:id="classificationComboBox" layoutX="393.0" layoutY="173.0" prefHeight="25.0" prefWidth="121.0" />
+                  <ComboBox fx:id="figureTypeComboBox" layoutX="395.0" layoutY="286.0" prefHeight="25.0" prefWidth="121.0" />
+                  <TextField fx:id="addMinPlayers" layoutX="465.0" layoutY="381.0" prefHeight="25.0" prefWidth="54.0" />
+                  <TextField fx:id="addMaxPlayers" layoutX="466.0" layoutY="412.0" prefHeight="25.0" prefWidth="54.0" />
+                  <Label layoutX="619.0" layoutY="63.0" text="Movie" />
+                  <Label layoutX="538.0" layoutY="138.0" text="Release Year" />
+                  <Label layoutX="540.0" layoutY="177.0" text="User Rating Score" />
+                  <TextField fx:id="addReleaseYear" layoutX="632.0" layoutY="136.0" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="addRating" layoutX="647.0" layoutY="172.0" prefHeight="25.0" prefWidth="81.0" />
+                  <Separator layoutX="566.0" layoutY="94.0" prefHeight="0.0" prefWidth="126.0" />
+                  <Separator layoutX="535.0" layoutY="223.0" prefHeight="4.0" prefWidth="193.0" />
+                  <Label layoutX="619.0" layoutY="242.0" text="Book" />
+                  <Separator layoutX="569.0" layoutY="263.0" prefHeight="0.0" prefWidth="126.0" />
+                  <Label layoutX="538.0" layoutY="278.0" text="Authors" />
+                  <Label layoutX="537.0" layoutY="316.0" text="Publication" />
+                  <Label layoutX="541.0" layoutY="352.0" text="Genre" />
+                  <TextField fx:id="addAuthours" layoutX="621.0" layoutY="278.0" prefHeight="25.0" prefWidth="96.0" />
+                  <TextField fx:id="addPublication" layoutX="621.0" layoutY="312.0" prefHeight="25.0" prefWidth="96.0" />
+                  <RadioButton fx:id="rbFiction" layoutX="626.0" layoutY="351.0" mnemonicParsing="false" text="Fiction">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="genreGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="rbNonFiction" layoutX="627.0" layoutY="385.0" mnemonicParsing="false" text="Non-Fiction" toggleGroup="$genreGroup" />
+                  <Button fx:id="saveBtn" layoutX="112.0" layoutY="402.0" mnemonicParsing="false" onAction="#addItem" prefHeight="25.0" prefWidth="91.0" text="Save" />
+               </children></AnchorPane>
          </content>
     </Tab>
       <Tab text="Remove Items">

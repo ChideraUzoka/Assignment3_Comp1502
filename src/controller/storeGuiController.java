@@ -15,14 +15,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import mru.tsc.model.BoardGame;
+import mru.tsc.model.Book;
+import mru.tsc.model.Figure;
 import mru.tsc.model.Item;
+import mru.tsc.model.Movie;
 
 public class storeGuiController implements Initializable {
+
+	// homepage variables
 	@FXML
 	private ListView<String> lvResults;
 	@FXML
@@ -48,12 +55,62 @@ public class storeGuiController implements Initializable {
 	@FXML
 	private ToggleGroup typeGroup;
 
+	// add items page variables
+	@FXML
+	private TextField addSN;
+	@FXML
+	private TextField addName;
+	@FXML
+	private TextField addPrice;
+	@FXML
+	private TextField addAvailableCount;
+	@FXML
+	private TextField addAgeAppropriate;
+	@FXML
+	private ChoiceBox<String> itemCategoryComboBox;
+	@FXML
+	private TextField addBrand;
+	@FXML
+	private ComboBox classificationComboBox;
+	@FXML
+	private ComboBox<String> figureTypeComboBox;
+	@FXML
+	private TextField addMinPlayers;
+	@FXML
+	private TextField addMaxPlayers;
+	@FXML
+	private TextField addReleaseYear;
+	@FXML
+	private TextField addRating;
+	@FXML
+	private TextField addAuthours;
+	@FXML
+	private TextField addPublication;
+	@FXML
+	private RadioButton rbFiction;
+	@FXML
+	private RadioButton rbNonFiction;
+	@FXML
+	private Button saveBtn;
+	@FXML
+	private ToggleGroup genreGroup;
+
+	// import objects from file handler class
 	FileHandler fileHandler = new FileHandler();
 	ArrayList<Item> itemsList;
+
+	// to create a results list to display
 	final ObservableList<String> resultsList = FXCollections.observableArrayList();
 
-	// to make alist of selectable type search items
+	// to make a list of selectable type search items
 	final ObservableList<String> typeSearchList = FXCollections.observableArrayList("Movie", "Book", "Figure",
+			"BoardGame");
+
+	// to make a list of selectable figure type items
+	final ObservableList<String> figureTypeDropDownItems = FXCollections.observableArrayList("A", "D", "H");
+
+	// to make a list of selectable figure type items
+	final ObservableList<String> categoryDropDown = FXCollections.observableArrayList("Movie", "Book", "Figure",
 			"BoardGame");
 
 	// to load up the items file
@@ -61,11 +118,6 @@ public class storeGuiController implements Initializable {
 
 		fileHandler = new FileHandler();
 		itemsList = fileHandler.masterItemList();
-	}
-
-	public void clickSelect(ActionEvent event) {
-		selectedName.setDisable(true);
-		selectedType.setDisable(true);
 	}
 
 	// Event Listener on Button[#btnSearch].onAction
@@ -240,6 +292,160 @@ public class storeGuiController implements Initializable {
 
 	}
 
+	/** add Items code */
+
+	// Event Listener on Button[#saveBtn].onAction
+	@FXML
+	public void addItem(ActionEvent event) {
+		addNewItem();
+	}
+
+	/**
+	 * method to add an new item
+	 * 
+	 * @param none
+	 * @return none
+	 *
+	 */
+	public void addNewItem() {
+
+		String SN = addSN.getText();
+		char firstSnNumber = SN.charAt(0);
+
+		// we have to validate the SN
+//		if (addName.getText().isEmpty()) {
+//			JOptionPane.showMessageDialog(null, "Please enter a name");
+//
+//		} else {
+		String name = addName.getText();
+		// }
+
+//		if (addPrice.getText().isEmpty()) {
+//			JOptionPane.showMessageDialog(null, "Please enter a Price");
+//
+//		} else {
+		double price = Double.parseDouble(addPrice.getText());
+		// }
+
+//		if (addAvailableCount.getText().isEmpty()) {
+//			JOptionPane.showMessageDialog(null, "Please enter the available count");
+
+		// } else {
+		int availableCount = Integer.parseInt(addAvailableCount.getText());
+		// }
+
+//		if (addAgeAppropriate.getText().isEmpty()) {
+//			JOptionPane.showMessageDialog(null, "Please enter the approriate age");
+
+		// } else {
+		int age = Integer.parseInt(addAgeAppropriate.getText());
+		// }
+
+		// check for movies
+		if (itemCategoryComboBox.getValue().equalsIgnoreCase("movie")) {
+			System.out.println(firstSnNumber);
+			try {
+				if (firstSnNumber != '4' || firstSnNumber != '5' || firstSnNumber != '6') {
+					JOptionPane.showMessageDialog(null, "Serial Number must begin with 4, 5 or 6");
+				}
+
+				else {
+//					if (addReleaseYear.getText().isEmpty()) {
+//						JOptionPane.showMessageDialog(null, "Please enter a the release year");
+//
+//					} else {
+					String releaseYear = addReleaseYear.getText();
+					// }
+
+					int rating = Integer.parseInt(addRating.getText());
+
+					// create movie objetc and add to list
+					Movie movie = new Movie(SN, name, price, availableCount, age, releaseYear, rating);
+					itemsList.add(movie);
+				}
+			} catch (Exception e) {
+				e.getMessage();
+				System.out.println("Invalid Input. Please Enter a valid number");
+			}
+
+		}
+
+		// check for books
+		else if (itemCategoryComboBox.getValue().equalsIgnoreCase("book")) {
+			boolean fictionIsSelected = rbFiction.isSelected();
+			boolean nonFicIsSelected = rbNonFiction.isSelected();
+
+			if (firstSnNumber != '2' || firstSnNumber != '3') {
+				JOptionPane.showMessageDialog(null, "Serial Number must begin with 2 or 3");
+			} else {
+
+				String authors = addAuthours.getText();
+				// to set genre
+				String genre = null;
+
+				if (fictionIsSelected) {
+					genre = "F";
+				} else if (nonFicIsSelected) {
+					genre = "N";
+				} else {
+					JOptionPane.showMessageDialog(null, "Please select a genre");
+				}
+
+				String publication = addPublication.getText();
+
+				// cretae new book object and add to list
+				Book book = new Book(SN, name, authors, price, availableCount, age, genre, publication);
+				itemsList.add(book);
+
+				JOptionPane.showMessageDialog(null, "Book Added!");
+			}
+		}
+
+		// check for figure
+		else if (itemCategoryComboBox.getValue().equalsIgnoreCase("figure")) {
+
+			if (firstSnNumber != '0' || firstSnNumber != '1') {
+				JOptionPane.showMessageDialog(null, "Serial Number must begin with 0 or 1");
+			} else {
+				String figType = figureTypeComboBox.getValue().toString();
+
+				String brand = addBrand.getText();
+
+				// create figure object
+				Figure figure = new Figure(SN, name, brand, price, availableCount, age, figType);
+
+				itemsList.add(figure);
+				JOptionPane.showMessageDialog(null, "Figure Added!");
+			}
+		}
+
+		// check for board game
+		else if (itemCategoryComboBox.getValue().equalsIgnoreCase("board game")) {
+
+			if (firstSnNumber != '7' || firstSnNumber != '8') {
+				JOptionPane.showMessageDialog(null, "Serial Number must begin with 7 or 8");
+			} else {
+				String brand = addBrand.getText();
+
+				int minPlayers = Integer.parseInt(addMinPlayers.getText());
+
+				int maxPlayers = Integer.parseInt(addMaxPlayers.getText());
+
+				int totalP = maxPlayers - minPlayers;
+
+				String numPlayers = String.valueOf(totalP);
+
+				// create board game objetc and add to list
+				BoardGame game = new BoardGame(SN, name, brand, price, availableCount, age, numPlayers, minPlayers,
+						maxPlayers);
+
+				itemsList.add(game);
+				JOptionPane.showMessageDialog(null, "Board Game Added!");
+			}
+		}
+
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -249,5 +455,14 @@ public class storeGuiController implements Initializable {
 
 		targetType.setValue("Type");
 		targetType.setItems(typeSearchList);
+
+		// to set category select
+		figureTypeComboBox.setValue(" ");
+		figureTypeComboBox.setItems(figureTypeDropDownItems);
+
+		// to set the type box
+
+		itemCategoryComboBox.setValue("Type");
+		itemCategoryComboBox.setItems(categoryDropDown);
 	}
 }
