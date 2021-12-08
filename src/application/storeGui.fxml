@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -119,104 +120,48 @@
                </children></AnchorPane>
          </content>
     </Tab>
-       <Tab text="Remove">
-               <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="1000.0">
-                     <children>
-                        <ListView fx:id="RTInventory" layoutX="393.0" layoutY="53.0" prefHeight="413.0" prefWidth="578.0" />
-                        <Text layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Serial Number :" wrappingWidth="286.1379089355469">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Line endX="-135.0" endY="156.79998779296875" layoutX="150.0" layoutY="-32.0" startX="187.79998779296875" startY="156.79998779296875" stroke="#00000032" />
-                        <GridPane layoutX="19.0" layoutY="166.0" prefHeight="126.0" prefWidth="314.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.20001220703125" minWidth="10.0" prefWidth="135.2000244140625" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.60000610351562" minWidth="10.0" prefWidth="179.99997558593753" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Label text="Serial Number (SN)" textFill="RED">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="RTSNTxt" promptText="Enter Serial Number Here" GridPane.columnIndex="1" />
-                           </children>
-                        </GridPane>
-                        <Button fx:id="RTSearchBtn" layoutX="58.0" layoutY="338.0" mnemonicParsing="false" onAction="#searchForRemove" prefHeight="30.0" prefWidth="100.0" text="Search" />
-                        <Button fx:id="RTRemoveBtn" layoutX="194.0" layoutY="338.0" mnemonicParsing="false" onAction="#remove" prefHeight="30.0" prefWidth="100.0" text="Remove" />
-                     </children>
-                  </AnchorPane>
-               </content></Tab>
-       <Tab text="Recommendation">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <ListView fx:id="GOInventory" layoutX="393.0" layoutY="53.0" prefHeight="413.0" prefWidth="578.0" />
-                        <Text layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose At Least Two of the Followings:" wrappingWidth="358.9378967285156">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Line endX="-135.0" endY="156.79998779296875" layoutX="150.0" layoutY="-32.0" startX="187.79998779296875" startY="156.79998779296875" stroke="#00000032" />
-                        <GridPane layoutX="19.0" layoutY="135.0" prefHeight="43.0" prefWidth="314.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <CheckBox fx:id="ageCB" mnemonicParsing="false" onAction="#selectedAndDisable" text="Age" />
-                              <CheckBox fx:id="typeCB" mnemonicParsing="false" onAction="#selectedAndDisable" text="Type" GridPane.columnIndex="1" />
-                              <CheckBox fx:id="priceRangeCB" mnemonicParsing="false" onAction="#selectedAndDisable" text="Price Range" GridPane.columnIndex="2" />
-                           </children>
-                        </GridPane>
-                        <GridPane layoutX="19.0" layoutY="186.0" prefHeight="126.0" prefWidth="314.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.20001220703125" minWidth="10.0" prefWidth="135.2000244140625" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.60000610351562" minWidth="10.0" prefWidth="179.99997558593753" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Label text="Age">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="GOAgeTxt" promptText="Enter Age Here" GridPane.columnIndex="1" />
-                              <Label text="Type" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Label>
-                              <ChoiceBox fx:id="GOType" prefHeight="23.0" prefWidth="185.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label text="Price Range" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="minPriceTxt" promptText="Minimum Price" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="maxPriceTxt" promptText="Maximum Price" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                           </children>
-                        </GridPane>
-                        <Button fx:id="GOSearch" layoutX="58.0" layoutY="338.0" mnemonicParsing="false" onAction="#recommendationOptionSearch" prefHeight="30.0" prefWidth="100.0" text="Search" />
-                        <Button fx:id="GOPurchase" layoutX="194.0" layoutY="338.0" mnemonicParsing="false" onAction="#recommendationOptionPuchase" prefHeight="30.0" prefWidth="100.0" text="Purchase" />
-                     </children></AnchorPane>
-              </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </children>
-</AnchorPane>
+      <Tab text="Remove Items">
+         <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="55.0" layoutY="88.0" text="Enter Serial Number">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="33.0" layoutY="212.0" text="Serial Number (SN)" textFill="#cc2b2b" />
+                  <ListView fx:id="RTInventory" layoutX="359.0" layoutY="33.0" prefHeight="376.0" prefWidth="338.0" />
+                  <TextField fx:id="RTSNTxt" layoutX="181.0" layoutY="208.0" />
+                  <Button fx:id="RTSearchBtn" layoutX="90.0" layoutY="345.0" mnemonicParsing="false" onAction="#searchForRemove" text="Search" />
+                  <Button fx:id="RTRemoveBtn" layoutX="215.0" layoutY="345.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
+               </children></AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Recommendation ">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="26.0" layoutY="62.0" text="Choose At Least Two of the Following:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="29.0" layoutY="100.0" prefHeight="0.0" prefWidth="296.0" />
+                  <CheckBox fx:id="ageCB" layoutX="26.0" layoutY="123.0" mnemonicParsing="false" text="Age" />
+                  <CheckBox fx:id="typeCB" layoutX="104.0" layoutY="123.0" mnemonicParsing="false" text="Type" />
+                  <CheckBox fx:id="priceRangeCB" layoutX="204.0" layoutY="123.0" mnemonicParsing="false" text="Price Range" />
+                  <Label layoutX="34.0" layoutY="177.0" text="Age" />
+                  <Label layoutX="31.0" layoutY="216.0" text="Type" />
+                  <Label layoutX="31.0" layoutY="262.0" text="Price Range" />
+                  <TextField fx:id="GOAgeTxt" layoutX="140.0" layoutY="173.0" promptText="Enter Age Here" />
+                  <TextField fx:id="minPriceTxt" layoutX="141.0" layoutY="258.0" promptText="Minimum Price" />
+                  <TextField fx:id="maxPriceTxt" layoutX="141.0" layoutY="292.0" promptText="Maximum Price" />
+                  <Button fx:id="GOSearch" layoutX="59.0" layoutY="372.0" mnemonicParsing="false" onAction="#giftOptionSearch" text="Search" />
+                  <Button fx:id="GOPurchase" layoutX="178.0" layoutY="372.0" mnemonicParsing="false" onAction="#giftOptionPuchase" text="Purchase" />
+                  <ListView fx:id="GOInventory" layoutX="370.0" layoutY="62.0" prefHeight="363.0" prefWidth="333.0" />
+                  <ChoiceBox fx:id="GOType" layoutX="141.0" layoutY="212.0" prefWidth="150.0" />
+               </children></AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>

@@ -9,12 +9,19 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import application.FileHandler;
+import exceptions.EmptyInputException;
+import exceptions.MinBiggerThanMaxException;
+import exceptions.NegativeNumberException;
+import exceptions.NoResultFoundException;
+import exceptions.NotEnoughAvailableCountException;
+import exceptions.SerialNumberFormatException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -26,13 +33,6 @@ import mru.tsc.model.Book;
 import mru.tsc.model.Figure;
 import mru.tsc.model.Item;
 import mru.tsc.model.Movie;
-import exceptions.EmptyInputException;
-import exceptions.NegativeNumberException;
-import exceptions.SerialNumberFormatException;
-import exceptions.MinBiggerThanMaxException;
-import exceptions.NoResultFoundException;
-import  exceptions.NotEnoughAvailableCountException;
-import application.Main;
 
 public class storeGuiController implements Initializable {
 
@@ -78,7 +78,7 @@ public class storeGuiController implements Initializable {
 	@FXML
 	private TextField addBrand;
 	@FXML
-	private ComboBox classificationComboBox;
+	private ComboBox<String> classificationComboBox;
 	@FXML
 	private ComboBox<String> figureTypeComboBox;
 	@FXML
@@ -101,39 +101,38 @@ public class storeGuiController implements Initializable {
 	private Button saveBtn;
 	@FXML
 	private ToggleGroup genreGroup;
-	
+
 	// Remove Item
-		@FXML
-		private ListView<String> RTInventory;
-		@FXML
-		private TextField RTSNTxt;
-		@FXML
-		private Button RTSearchBtn;
-		@FXML
-		private Button RTRemoveBtn;
-		
-		// Recommendation
-		@FXML
-		private ChoiceBox GOType;
-		@FXML
-		private CheckBox ageCB;
-		@FXML
-		private CheckBox typeCB;
-		@FXML
-		private CheckBox priceRangeCB;
-		@FXML
-		private TextField GOAgeTxt;
-		@FXML
-		private TextField minPriceTxt;
-		@FXML
-		private TextField maxPriceTxt;
-		@FXML
-		private Button GOSearch;
-		@FXML
-		private Button GOPurchase;
-		@FXML
-		private ListView<String> GOInventory;
-	
+	@FXML
+	private ListView<String> RTInventory;
+	@FXML
+	private TextField RTSNTxt;
+	@FXML
+	private Button RTSearchBtn;
+	@FXML
+	private Button RTRemoveBtn;
+
+	// Recommendation
+	@FXML
+	private ChoiceBox<String> GOType;
+	@FXML
+	private CheckBox ageCB;
+	@FXML
+	private CheckBox typeCB;
+	@FXML
+	private CheckBox priceRangeCB;
+	@FXML
+	private TextField GOAgeTxt;
+	@FXML
+	private TextField minPriceTxt;
+	@FXML
+	private TextField maxPriceTxt;
+	@FXML
+	private Button GOSearch;
+	@FXML
+	private Button GOPurchase;
+	@FXML
+	private ListView<String> GOInventory;
 
 	// import objects from file handler class
 	FileHandler fileHandler = new FileHandler();
@@ -339,10 +338,10 @@ public class storeGuiController implements Initializable {
 
 	// Event Listener on Button[#saveBtn].onAction
 	@FXML
-	public void addItem(ActionEvent event) throws FileNotFoundException {
+	public void addNewItem(ActionEvent event) throws FileNotFoundException {
 		addNewItem();
 	}
-	
+
 	/**
 	 * Allow user to search by Serial Number in the Remove Toy tab.
 	 * 
@@ -351,48 +350,53 @@ public class storeGuiController implements Initializable {
 	 */
 	public void searchForRemove(ActionEvent e) {
 		RTInventory.getItems().clear();
-		
+
 		try {
 			// validate the input using validate method
-			errorIsCaught = validate(RTSNTxt, "Serial Number", "SN");
-			if (errorIsCaught) return;
-			
+			boolean errorIsCaught = validate(RTSNTxt, "Serial Number", "SN");
+			if (errorIsCaught)
+				return;
+
 			// search through the ArrayList<Toy> located in Toy Class
-			for (Toy toy : Toy.toys) {
+			for (Item toy : itemsList) {
 				// show the match result
 				if (RTSNTxt.getText().equals(toy.getSN())) {
 					RTInventory.getItems().add(toy.toString());
 					break;
 				}
 			}
-			
+
 			// handle when no result is found but only when no error is caught beforehand
 			if (!errorIsCaught && RTInventory.getItems().isEmpty()) {
-				throw new NoResultFoundException();
-				
+				throw new Exception();
+
 			}
-		} catch (NoResultFoundException e1) {
+		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage());
 		}
 	}
+
 	/**
 	 * Allow user to remove toy after search.
+	 * 
 	 * @param ActionEvent e - the action event passed in
 	 * @return none
+	 * @throws FileNotFoundException
 	 */
-	public void remove(ActionEvent e) {
+	public void remove(ActionEvent e) throws FileNotFoundException {
 		try {
 			if (!RTInventory.getSelectionModel().getSelectedItem().isEmpty()) {
-				for (Toy toy : Toy.toys) {
+				for (Item toy : itemsList) {
 					// iterate through the ArrayList<Toy> toys located in Toy Class
 					if (RTSNTxt.getText().equals(toy.getSN())) {
 						// prompt the user to confirm the remove action
-						int result = JOptionPane.showConfirmDialog (null, "Are You Sure To Remove " + toy.getName() + 
-								" (Serial Number: " + toy.getSN() + ")?",
+						int result = JOptionPane.showConfirmDialog(null,
+								"Are You Sure To Remove " + toy.getName() + " (Serial Number: " + toy.getSN() + ")?",
 								"Warning", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 						// remove the toy if the user confirms
 						if (result == JOptionPane.YES_OPTION) {
-							Toy.toys.remove(toy);
+							itemsList.remove(toy);
+							fileHandler.save(itemsList);
 							JOptionPane.showMessageDialog(null, toy.getName() + " Is Successfully Removed.");
 							// clear the list
 							RTInventory.getItems().clear();
@@ -405,7 +409,7 @@ public class storeGuiController implements Initializable {
 			JOptionPane.showMessageDialog(null, "Please Select A Toy.");
 		}
 	}
-	
+
 	/**
 	 * Allow user to search for suggested by entering at least two of the options.
 	 * 
@@ -414,117 +418,120 @@ public class storeGuiController implements Initializable {
 	 */
 	public void giftOptionSearch(ActionEvent e) {
 		// clear the list before each search
-				GOInventory.getItems().clear();
+		GOInventory.getItems().clear();
 
-				errorIsCaught = false;
-				
-				// confirm at least two options (Check Box) are chosen
-				int count = 0;
-				if (ageCB.isSelected()) count++;
-				if (typeCB.isSelected()) count++;
-				if (priceRangeCB.isSelected()) count++;
-				if (count < 2) {
-					JOptionPane.showMessageDialog(null, "Please Choose At Least Two Option");
-					return;
+		boolean errorIsCaught = false;
+
+		// confirm at least two options (Check Box) are chosen
+		int count = 0;
+		if (ageCB.isSelected())
+			count++;
+		if (typeCB.isSelected())
+			count++;
+		if (priceRangeCB.isSelected())
+			count++;
+		if (count < 2) {
+			JOptionPane.showMessageDialog(null, "Please Choose At Least Two Option");
+			return;
+		}
+
+		// validate Text Field age if selected
+		if (ageCB.isSelected()) {
+			errorIsCaught = validate(GOAgeTxt, "Age", "Integer");
+			if (errorIsCaught)
+				return;
+		}
+
+		// validate Minimum Price and Maximum Price
+		if (priceRangeCB.isSelected()) {
+			errorIsCaught = validate(minPriceTxt, "Minimum Price", "Double");
+			if (errorIsCaught)
+				return;
+			errorIsCaught = validate(maxPriceTxt, "Maximum Price", "Double");
+			if (errorIsCaught)
+				return;
+			try {
+				// if the minimum price is bigger than the maximum price
+				if (Double.parseDouble(minPriceTxt.getText()) > Double.parseDouble(maxPriceTxt.getText())) {
+					throw new MinBiggerThanMaxException();
 				}
-				
-				// validate Text Field age if selected
-				if (ageCB.isSelected()) {
-					errorIsCaught = validate(GOAgeTxt, "Age", "Integer");
-					if (errorIsCaught) return;
-				}
-				
-				// validate Minimum Price and Maximum Price
-				if (priceRangeCB.isSelected()) {
-					errorIsCaught = validate(minPriceTxt, "Minimum Price", "Double");
-					if (errorIsCaught) return;
-					errorIsCaught = validate(maxPriceTxt, "Maximum Price", "Double");
-					if (errorIsCaught) return;
-					try {
-						// if the minimum price is bigger than the maximum price
-						if (Double.parseDouble(minPriceTxt.getText()) > 
-						Double.parseDouble(maxPriceTxt.getText())) {
-							throw new MinBiggerThanMaxException();
-						}
-					} catch (MinBiggerThanMaxException e1) {
-						JOptionPane.showMessageDialog(null, e1.getMessage());
-						return;
-					}
-				}
-				
-				/*
-				 * There were 4 scenario:
-				 * 1. User chooses Age and Type
-				 * 2. User chooses Age and Price Range
-				 * 3. User chooses Type and Price Range
-				 * 4. User chooses all Age, Type and Price Range
-				 */
-				
-				// case 1
-				if (ageCB.isSelected() && typeCB.isSelected() && !priceRangeCB.isSelected()) {
-					// search through the ArrayList<Toy> toys located in Toy Class
-					for (Toy toy : Toy.toys) {
-						// make the simple name of BoardGame Class become "Board Game"
-						String simpleName = toy.getClass().getSimpleName().replace("dG", "d G");
-			
-						if (Integer.parseInt(GOAgeTxt.getText()) >= toy.getAgeAppropriate() &&
-								GOType.getSelectionModel().getSelectedItem().toString().equals(simpleName)) {
-							GOInventory.getItems().add(toy.toString());
-						}
-					}
-				}
-				
-				// case 2
-				if (ageCB.isSelected() && priceRangeCB.isSelected() && !typeCB.isSelected()) {
-					for (Toy toy : Toy.toys) {
-						if (Integer.parseInt(GOAgeTxt.getText()) >= toy.getAgeAppropriate() &&
-								Double.parseDouble(minPriceTxt.getText()) <= toy.getPrice() &&
-								Double.parseDouble(maxPriceTxt.getText()) >= toy.getPrice()) {
-							GOInventory.getItems().add(toy.toString());
-						}
-					}
-				}
-				
-				// case 3
-				if (typeCB.isSelected() && priceRangeCB.isSelected() && !ageCB.isSelected()) {
-					for (Toy toy: Toy.toys) {
-						// make the simple name of BoardGame Class become "Board Game"
-						String simpleName = toy.getClass().getSimpleName().replace("dG", "d G");
-						
-						if (GOType.getSelectionModel().getSelectedItem().toString().equals(simpleName) &&
-								Double.parseDouble(minPriceTxt.getText()) <= toy.getPrice() &&
-								Double.parseDouble(maxPriceTxt.getText()) >= toy.getPrice()) {
-							GOInventory.getItems().add(toy.toString());
-						}
-					}
-				}
-				
-				// case 4
-				if (ageCB.isSelected() && typeCB.isSelected() && priceRangeCB.isSelected()) {
-					for (Toy toy: Toy.toys) {
-						// make the simple name of BoardGame Class become "Board Game"
-						String simpleName = toy.getClass().getSimpleName().replace("dG", "d G");
-						
-						if (Integer.parseInt(GOAgeTxt.getText()) >= toy.getAgeAppropriate() &&
-								GOType.getSelectionModel().getSelectedItem().toString().equals(simpleName) &&
-								Double.parseDouble(minPriceTxt.getText()) <= toy.getPrice() &&
-								Double.parseDouble(maxPriceTxt.getText()) >= toy.getPrice()) {
-							GOInventory.getItems().add(toy.toString());
-						}
-					}
-				}
-				
-				// handle when no result is found but only when no error is caught beforehand
-				try {
-					if (!errorIsCaught && GOInventory.getItems().isEmpty()) {
-						throw new NoResultFoundException();
-					}
-				} catch (NoResultFoundException e1) {
-					JOptionPane.showMessageDialog(null, e1.getMessage());
-					
+			} catch (MinBiggerThanMaxException e1) {
+				JOptionPane.showMessageDialog(null, e1.getMessage());
+				return;
+			}
+		}
+
+		/*
+		 * There were 4 scenario: 1. User chooses Age and Type 2. User chooses Age and
+		 * Price Range 3. User chooses Type and Price Range 4. User chooses all Age,
+		 * Type and Price Range
+		 */
+
+		// case 1
+		if (ageCB.isSelected() && typeCB.isSelected() && !priceRangeCB.isSelected()) {
+			// search through the ArrayList<Toy> toys located in Toy Class
+			for (Item toy : itemsList) {
+				// make the simple name of BoardGame Class become "Board Game"
+				String simpleName = toy.getClass().getSimpleName().replace("dG", "d G");
+
+				if (Integer.parseInt(GOAgeTxt.getText()) >= toy.getAgeAppropriate()
+						&& GOType.getSelectionModel().getSelectedItem().toString().equals(simpleName)) {
+					GOInventory.getItems().add(toy.toString());
 				}
 			}
-			
+		}
+
+		// case 2
+		if (ageCB.isSelected() && priceRangeCB.isSelected() && !typeCB.isSelected()) {
+			for (Item toy : itemsList) {
+				if (Integer.parseInt(GOAgeTxt.getText()) >= toy.getAgeAppropriate()
+						&& Double.parseDouble(minPriceTxt.getText()) <= toy.getPrice()
+						&& Double.parseDouble(maxPriceTxt.getText()) >= toy.getPrice()) {
+					GOInventory.getItems().add(toy.toString());
+				}
+			}
+		}
+
+		// case 3
+		if (typeCB.isSelected() && priceRangeCB.isSelected() && !ageCB.isSelected()) {
+			for (Item toy : itemsList) {
+				// make the simple name of BoardGame Class become "Board Game"
+				String simpleName = toy.getClass().getSimpleName().replace("dG", "d G");
+
+				if (GOType.getSelectionModel().getSelectedItem().toString().equals(simpleName)
+						&& Double.parseDouble(minPriceTxt.getText()) <= toy.getPrice()
+						&& Double.parseDouble(maxPriceTxt.getText()) >= toy.getPrice()) {
+					GOInventory.getItems().add(toy.toString());
+				}
+			}
+		}
+
+		// case 4
+		if (ageCB.isSelected() && typeCB.isSelected() && priceRangeCB.isSelected()) {
+			for (Item toy : itemsList) {
+				// make the simple name of BoardGame Class become "Board Game"
+				String simpleName = toy.getClass().getSimpleName().replace("dG", "d G");
+
+				if (Integer.parseInt(GOAgeTxt.getText()) >= toy.getAgeAppropriate()
+						&& GOType.getSelectionModel().getSelectedItem().toString().equals(simpleName)
+						&& Double.parseDouble(minPriceTxt.getText()) <= toy.getPrice()
+						&& Double.parseDouble(maxPriceTxt.getText()) >= toy.getPrice()) {
+					GOInventory.getItems().add(toy.toString());
+				}
+			}
+		}
+
+		// handle when no result is found but only when no error is caught beforehand
+		try {
+			if (!errorIsCaught && GOInventory.getItems().isEmpty()) {
+				throw new NoResultFoundException();
+			}
+		} catch (NoResultFoundException e1) {
+			JOptionPane.showMessageDialog(null, e1.getMessage());
+
+		}
+	}
+
 	/**
 	 * Allow user to buy the suggested gift.
 	 * 
@@ -535,17 +542,19 @@ public class storeGuiController implements Initializable {
 		try {
 			// get the result (String) that user selects
 			String userSelection = GOInventory.getSelectionModel().getSelectedItem().toString();
-			// get the Serial Number using index of Number +8 to get the first digit and +18 to get the last digit
+			// get the Serial Number using index of Number +8 to get the first digit and +18
+			// to get the last digit
 			String selectedSN = userSelection.substring(userSelection.indexOf("Number") + 8,
 					userSelection.indexOf("Number") + 18);
-			// search through the ArrayList<Toy> toys to see if there is any serial number match
-			for (Toy toy : Toy.toys) {
+			// search through the ArrayList<Toy> toys to see if there is any serial number
+			// match
+			for (Item toy : itemsList) {
 				if (selectedSN.equals(toy.getSN())) {
 					if (toy.getAvailableCount() > 0) {
 						// deduct the available count
 						toy.setAvailableCount(toy.getAvailableCount() - 1);
-						JOptionPane.showMessageDialog(null, "You Have Successfully Purchase " + toy.getName() + ".\n" +
-								"The Avaliable Count is " + toy.getAvailableCount() + " now.");
+						JOptionPane.showMessageDialog(null, "You Have Successfully Purchase " + toy.getName() + ".\n"
+								+ "The Avaliable Count is " + toy.getAvailableCount() + " now.");
 						GOInventory.getItems().clear();
 						// update the items purchased
 						GOInventory.getItems().add(toy.toString());
@@ -560,6 +569,7 @@ public class storeGuiController implements Initializable {
 			JOptionPane.showMessageDialog(null, "Please Select A Toy.");
 		}
 	}
+
 	/**
 	 * add Items code
 	 * 
@@ -830,12 +840,14 @@ public class storeGuiController implements Initializable {
 		}
 
 	}
-		/**
-	 * Validate the user input in Text Field and print error message in JOptionPane accordingly.
+
+	/**
+	 * Validate the user input in Text Field and print error message in JOptionPane
+	 * accordingly.
 	 * 
 	 * @param textField - the Text Field that the user is on
 	 * @param fieldName - the name of the Text Field
-	 * @param type - can be "SN", "Text", "Integer", "Double"
+	 * @param type      - can be "SN", "Text", "Integer", "Double"
 	 * @return boolean - indicate if there is error caught or not
 	 */
 	public boolean validate(TextField textField, String fieldName, String type) {
@@ -847,7 +859,7 @@ public class storeGuiController implements Initializable {
 			if (type.equals("SN")) {
 				// check if it is an integer, if not then a NumberFormatException is thrown
 				Long.parseLong(textField.getText());
-				
+
 				// check if the SN is 10-digit long
 				if (textField.getText().length() != 10) {
 					throw new SerialNumberFormatException();

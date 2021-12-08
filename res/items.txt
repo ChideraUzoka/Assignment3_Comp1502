@@ -107,7 +107,7 @@
 7824482027;The Farming Game;Game Throne;174.14;13;4;1-5
 7837317368;TEG;Game Reboot;76.34;1;8;1-7
 7854452599;Hotel;Game Sensor;82.8;10;8;1-3
-7935086963;StarCraft: The Board Game;Gameado;50.81;5;7;1-6
+7935086963;StarCraft: The Board Game;Gameado;50.81;4;7;1-6
 8076566788;Star Wars Epic Duels;Game Reboot;285.25;14;9;1-8
 8085889603;1313 Dead End Drive;Game Zombie;43.54;10;10;2-3
 8362861720;Heroscape;Game Pixel;132.21;7;8;1-5
@@ -201,7 +201,7 @@
 0766777773;Fashion doll;Game Sky;42.18;12;3;D
 0845728850;Barbie;Game Buff;60.1;13;8;D
 0902986179;Celebrity doll;Game Orc;28.06;2;10;H
-1024162826;Japanese traditional dolls;Game Demon;139.99;12;7;H
+1024162826;Japanese traditional dolls;Game Demon;139.99;11;7;H
 1091374555;William Shakespeare;Game Sky;70.86;14;2;H
 1128983567;American Girl;Game Shadow;14.22;5;8;A
 1147205649;Ninja Turtles;Gamezoid;46.15;10;6;A
@@ -225,5 +225,5 @@
 1963069543;Chatty Cathy;Game Survival;120.37;5;8;A
 1989637627;Abraham Lincoln;Game Throne;60.1;5;7;H
 7213456789;jgh;ghknj;234.0;43;5;23-5
-234567890;FERFGMHJ,.\;FDGHNF;5467.0;123;6;JHGFD;765
-2345678973;vd;vef;4.0;2;3;N;vfed
+234567890;FERFGMHJ,.\;FDGHNF;5467.0;120;6;JHGFD;765
+4234567678;vsdf;4356.0;3;45;3;42
